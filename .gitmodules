@@ -1,0 +1,3 @@
+[submodule "submodules/qmc"]
+	path = submodules/qmc
+	url = git@github.com:fagonzalezo/qmc.git
