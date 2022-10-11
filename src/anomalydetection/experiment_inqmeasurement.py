@@ -49,17 +49,18 @@ def experiment_inqmeasurement(X, y, setting, mlflow, best=False):
         plt.axes(frameon = 0)
         plt.hist(A[np.triu_indices_from(A, k=1)].ravel(), density=True, bins = 40)
         plt.savefig('histogram.png',dpi = 300)
-        plt.show()
+        #plt.show()
 
 
         setting["z_adaptive_input_dimension"] = X_train.shape[1]
 
         y_train = y[:setting["z_memory"]]
 
-        X_memory = X[y == 0, :]
+        X_memory = X_train[y_train == 0, :]
 
         datos = np.concatenate([np.random.uniform(-3, 3, \
             size=(X_memory.shape[0],X_memory.shape[1])), X_memory])
+        
 
 
         model = inqmeasurement.InqMeasurement(X_memory.shape[1], dim_x=setting["z_rff_components"],
@@ -75,9 +76,10 @@ def experiment_inqmeasurement(X, y, setting, mlflow, best=False):
 
         if np.isclose(setting["z_threshold"], 0.0, rtol=0.0):
             thresh = find_best_threshold(y_train, model.predict(X_train))
+            thresh /= setting["z_division_theshold"]
             setting["z_threshold"] = thresh
-
-
+            
+        
         batch_size = setting["z_batch_size_streaming"]
         num_train = X_test.shape[0]
         num_complete_batches, leftover = divmod(num_train, batch_size)

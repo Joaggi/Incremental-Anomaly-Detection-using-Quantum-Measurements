@@ -4,7 +4,7 @@ import jax.numpy as jnp
 import numpy as np
 from functools import partial
 from sklearn.kernel_approximation import RBFSampler
-
+from tqdm import tqdm
 
 class QFeatureMap_rff():
 

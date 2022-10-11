@@ -12,7 +12,6 @@ def experiment(setting,  mlflow):
 
     X_train, y_train = load_dataset(dataset, algorithm)
 
-    X_train = min_max_scaler(X_train)[0]
 
     print("shape X_train : ", X_train.shape)
 
