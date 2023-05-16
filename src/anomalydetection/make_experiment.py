@@ -1,9 +1,7 @@
 from experiment_qincmeasurement import experiment_qincmeasurement
 from experiment_inqmeasurement import experiment_inqmeasurement
+from experiment_inqam import experiment_inqameasurement
 
-# Uncomment the following line when running a Pyod notebook
-# Keep it commented otherwise
-#from experiment_pyod import experiment_pyod
 
 def make_experiment(algorithm, X_train, y_train, settings, mlflow, best=False):
     
@@ -11,4 +9,5 @@ def make_experiment(algorithm, X_train, y_train, settings, mlflow, best=False):
         experiment_qincmeasurement(X_train, y_train, settings, mlflow, best)
     if algorithm == "inqmeasurement":
         experiment_inqmeasurement(X_train, y_train, settings, mlflow, best)
- 
+    if algorithm == "inqameasurement":
+        experiment_inqameasurement(X_train, y_train, settings, mlflow, best)

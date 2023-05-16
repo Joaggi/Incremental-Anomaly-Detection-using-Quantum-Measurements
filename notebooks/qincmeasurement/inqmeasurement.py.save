@@ -10,7 +10,7 @@ from run_experiment_hyperparameter_search import run_experiment_hyperparameter_s
 import sys 
 
 
-database = "UNSW"
+database = "cover"
 
 settings = {
     "z_dataset": database,
@@ -30,44 +30,39 @@ settings = {
 
 
 prod_settings = {
-    "z_rff_components": [200], 
-    "z_memory": [2000], # la puedes aumentar 
-    "z_remember_alpha": [0.6], #[0.01, 0.05, 0.1, 0.25, 0.5, 0.85],
+    "z_rff_components": [200, 2000], 
+    "z_memory": [256], # la puedes aumentar 
+    "z_remember_alpha": [0.75], #[0.01, 0.05, 0.1, 0.25, 0.5, 0.85],
     "z_adaptive_base_lr": [1e-3], #[1e-2,1e-3,1e-4],
-    "z_adaptive": [True],
-    "z_thresh_correction_factor": [2**0]
+    "z_adaptive": [False, True],
 }
 
 
 sigmas = []
 
 if database == "cardio":
-    sigmas = [2.5, 3]
+    sigmas = [2.5]
 elif database == "ionosphere":
     sigmas = [0.9]
 elif database == "satellite":
-    sigmas = [0.7]
+    sigmas = [0.7, 1.4, 2.0]
 elif database == "satimage-2":
-    sigmas = [0.65, 0.8]
+    sigmas == [0.65, 1.5]
 elif database == "mammography":
-    sigmas = [0.4, 4]
+    sigmas = [0.4]
 elif database == "pima":
     sigmas = [0.5]
 elif database == "cover":
-    sigmas = [0.45, 0.5, 2]
+    sigmas = [0.05, 0.25, 0.45, 0.65, 0.85]
 elif database == "NSL":
-    sigmas = [1, 1.25]
+    sigmas = [1.25]
 elif database == "Syn":
-    sigmas = [0.1]
-elif database == "KDD":
-    sigmas = [2]
-elif database == "DOS":
-    sigmas = [0.1, 0.11, 0.15]
-elif database == "UNSW":
-    sigmas = [2.5]
-
+    sigmas = [0.2]
+elif database in ["KDD", "DOS", "UNSW"]:
+    sigmas = [0.1, 0.2]
 
 prod_settings["z_sigma"] = sigmas
 
 
 run_experiment_hyperparameter_search("inqmeasurement", database, parent_path, prod_settings, settings)
+
