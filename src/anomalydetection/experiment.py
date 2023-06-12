@@ -13,8 +13,6 @@ def experiment(setting,  mlflow):
     X_train, y_train = load_dataset(dataset, algorithm)
     print("Dataset loaded!")
 
-    X_train = min_max_scaler(X_train)[0]
-
     print("shape X_train : ", X_train.shape)
 
     make_experiment(algorithm, X_train, y_train, setting, mlflow)
