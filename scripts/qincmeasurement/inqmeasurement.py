@@ -3,7 +3,7 @@ try:
 except:
     from notebooks.initialization import initialization
 
-parent_path = initialization("Incremental-Anomaly-Detection-using-Quantum-Measurements", "/home/oabustosb/Desktop/")
+parent_path = initialization("Incremental-Anomaly-Detection-using-Quantum-Measurements", "/home/jagallegom/")
 
 from run_experiment_hyperparameter_search import run_experiment_hyperparameter_search
 

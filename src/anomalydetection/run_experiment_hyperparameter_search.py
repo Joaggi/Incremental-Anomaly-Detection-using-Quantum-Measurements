@@ -34,7 +34,8 @@ def run_experiment_hyperparameter_search(algorithm, database, parent_path, prod_
     #print(len(settings))
     for i, setting in enumerate(settings):
         #if("verbose" in setting and setting["verbose"]): print(i)
-        #print("Experiments!") 
+        print("Experiments!") 
+        print(i, setting) 
         experiment(setting = setting, mlflow = mlflow)
     
 
