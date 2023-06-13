@@ -8,7 +8,7 @@ def experiment(setting,  mlflow):
 
     algorithm = setting["z_algorithm"]
     dataset = setting["z_dataset"]
-    name_of_experiment = setting["z_name_of_experiment"]
+    #name_of_experiment = setting["z_name_of_experiment"]
 
     X_train, y_train = load_dataset(dataset, algorithm)
     print("Dataset loaded!")
