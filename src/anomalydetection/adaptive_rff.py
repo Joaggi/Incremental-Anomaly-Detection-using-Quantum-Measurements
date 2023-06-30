@@ -79,7 +79,8 @@ def gauss_kernel_arr(x, y, gamma):
     return np.exp(-gamma * np.linalg.norm(x - y, axis=1) ** 2)
 
 def build_features(X):
-    X_train, X_test = train_test_split(X)
+    print(f"Shape for adaptive Fourier features: {X.shape}")
+    X_train, X_test = train_test_split(X, test_size=0.3)
     num_samples = 100000
     rnd_idx1 = np.random.randint(X_train.shape[0],size=(num_samples, ))
     rnd_idx2 = np.random.randint(X_train.shape[0],size=(num_samples, ))

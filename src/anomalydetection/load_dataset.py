@@ -57,7 +57,12 @@ def load_dataset(dataset, algorithm):
     if dataset == 'KDD':
         labels = 1 - np.array(labels)
 
-    print("DATASET SIZE:", len(labels))
 
-    return np.array(numeric), np.array(labels)
+    X = np.array(numeric)
+    labels = np.array(labels)
 
+    if(X.ndim == 1): X = X.reshape(-1, 1)
+
+    print(f"Dataset Shape: {X.shape} labels: {labels.shape}")
+
+    return X, labels 

@@ -43,8 +43,11 @@ include = [
        "scripts",
        "submodules"
 ]
-venvPath = "~/.cache/pypoetry/virtualenvs/"
+#venvPath = "~/.cache/pypoetry/virtualenvs/"
+#venv = "2021-02-conditional-density-estimation-81fTIEwr-py3.9"
+venvPath = "/usr/lib/python3.9/"
 venv = "2021-02-conditional-density-estimation-81fTIEwr-py3.9"
+
 
 [tool.pytest.ini_options]
 minversion = "6.0"

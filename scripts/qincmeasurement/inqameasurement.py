@@ -17,7 +17,8 @@ import sys
 algorithm, database = "inqameasurement", "ionosphere"
 
 #databases = ["cardio", "ionosphere", "mammography", "pima", "satellite", "satimage-2", "Syn", "KDD", "NSL", "cover", "DOS", "UNSW"]
-databases = ["mammography", "pima", "satellite", "satimage-2", "Syn", "KDD", "NSL", "cover", "DOS", "UNSW"]
+#databases = [ "pima", "satellite", "satimage-2", "Syn", "KDD", "NSL", "cover", "DOS", "UNSW"]
+databases = ["DOS", "UNSW"]
 
 
 settings = {
@@ -37,16 +38,16 @@ settings = {
     "z_adaptive_epochs": 120,
     "z_adaptive_random_state": None,
     "z_random_search": True,
-    "z_random_search_random_state": 402,
-    "z_random_search_iter": 50,
+    "z_random_search_random_state": 401,
+    "z_random_search_iter": 30,
     "z_verbose": 1,
     "z_server": "server",
 }
 
 prod_settings_ionosphere= {
-    "z_rff_components" :  [2000], \
+    "z_rff_components" :  [256, 512, 1000], \
     "z_sigma" :  [2**i for i in range(-5, 10)], \
-    "z_memory": [2048, 4096], # la puedes aumentar 
+    "z_memory": [32, 64, 128, 512, 1024, 2048], # la puedes aumentar 
     "z_window_size": [32, 64, 128, 512, 1024, 2048], # la puedes aumentar 
     "z_adaptive_base_lr": [1e-2,1e-3,1e-4],
     "z_adaptive": [False, True],
@@ -55,10 +56,10 @@ prod_settings_ionosphere= {
 
 
 prod_settings_nsl= {
-    "z_rff_components" :  [2000], \
-    "z_sigma" :  [2**i for i in range(-5, 10)], \
-    "z_memory": [2048, 4096], # la puedes aumentar 
-    "z_window_size": [32, 64, 128, 512, 1024, 2048, 4096], # la puedes aumentar 
+    "z_rff_components" :  [256, 512], \
+    "z_sigma" :  [2**i for i in range(-5, 5)], \
+    "z_memory": [32, 64, 128, 512 ], # la puedes aumentar 
+    "z_window_size": [32, 64, 128, 512], # la puedes aumentar 
     "z_adaptive_base_lr": [1e-2,1e-3,1e-4],
     "z_adaptive": [False, True],
     "z_division_threshold": [1/2**5, 1/2**2, 1, 2, 2**4, 2**8, 1/2**8],
@@ -66,10 +67,10 @@ prod_settings_nsl= {
 
 
 prod_settings_kdd= {
-    "z_rff_components" :  [4000], \
-    "z_sigma" :  [2**i for i in range(-5, 10)], \
-    "z_memory": [2048],
-    "z_window_size": [32, 64, 128, 512, 1024, 2048, 4096], # la puedes aumentar 
+    "z_rff_components" :  [256, 512], \
+    "z_sigma" :  [2**i for i in range(-5, 5)], \
+    "z_memory": [32, 64, 128, 512],
+    "z_window_size": [32, 64, 128, 512], # la puedes aumentar 
     "z_adaptive_base_lr": [1e-2,1e-3,1e-4],
     "z_adaptive": [False, True],
     "z_division_threshold": [1/2**5, 1/2**2, 1, 2, 2**4, 2**8, 1/2**8],
@@ -77,11 +78,10 @@ prod_settings_kdd= {
 
 
 prod_settings_unsw= {
-    "z_rff_components" :  [2000], \
-    "z_sigma" :  [2**i for i in range(-5, 10)], \
-    "z_memory": [5000],
-    "z_division_threshold": [1/2**5, 1/2**2, 1, 2, 2**4, 2**8, 1/2**8],
-    "z_window_size": [32, 64, 128, 512, 1024, 2048, 4096], # la puedes aumentar
+    "z_rff_components" :  [256, 512], \
+    "z_sigma" :  [2**i for i in range(-5, 5)], \
+    "z_memory": [32, 64, 128, 512],
+    "z_window_size": [32, 64, 128, 512], # la puedes aumentar
     "z_adaptive_base_lr": [1e-2,1e-3,1e-4],
     "z_adaptive": [False, True],
     "z_division_threshold": [1/2**5, 1/2**2, 1, 2, 2**4, 2**8, 1/2**8],
@@ -115,7 +115,7 @@ def execution(database):
     elif database == "KDD":
         prod_settings = prod_settings_kdd
     elif database == "DOS":
-        prod_settings = prod_settings_ionosphere
+        prod_settings = prod_settings_unsw
     elif database == "UNSW":
         prod_settings = prod_settings_unsw
 
